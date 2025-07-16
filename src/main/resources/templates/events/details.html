@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали события</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #1e1e2f, #2d2d44);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #00ffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .members {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 60px;
+        }
+
+        .form {
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .btn-group {
+            margin-top: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            margin-right: 10px;
+            background-color: #ff4e00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e04400;
+        }
+
+        .btn-red {
+            background-color: #e63946;
+        }
+
+        .btn-green {
+            background-color: #4caf50;
+        }
+
+        .btn-red:hover {
+            background-color: #c9182b;
+        }
+
+        .btn-green:hover {
+            background-color: #43a047;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${event.name}">Название события</h1>
+
+    <div class="section">
+        <h2>📅 Дата и время</h2>
+        <p th:text="${event.eventDate}">2025-04-05 15:00</p>
+    </div>
+
+    <div class="section">
+        <h2>🟥 Красная команда</h2>
+        <div class="members">
+            <span th:each="member : ${event.redTeam}" th:text="${member} + ', '"></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🟩 Зелёная команда</h2>
+        <div class="members">
+            <span th:each="member : ${event.greenTeam}" th:text="${member} + ', '"></span>
+        </div>
+    </div>
+
+    <div class="form">
+        <h2>📝 Записаться в команду</h2>
+        <form th:action="@{/events/{id}/join(id=${event.id})}" method="post">
+            <label>Введите ваше имя:</label>
+            <input type="text" name="username" placeholder="Иван Иванов" required />
+            <div class="btn-group">
+                <button type="submit" name="team" value="red" class="btn btn-red">🟥 Присоединиться к красной команде</button>
+                <button type="submit" name="team" value="green" class="btn btn-green">🟩 Присоединиться к зелёной команде</button>
+            </div>
+        </form>
+    </div>
+
+    <a th:href="@{/events}" class="btn">⬅ Назад к списку</a>
+</div>
+</body>
+</html>

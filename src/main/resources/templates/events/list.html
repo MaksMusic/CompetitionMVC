@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список событий</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 40px;
+            color: #00fff7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .event-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .event-card:hover {
+            transform: scale(1.02);
+        }
+
+        .event-name {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .event-date {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #ff4e00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e04400;
+        }
+
+        .btn-new {
+            display: block;
+            text-align: center;
+            margin: 40px auto;
+            padding: 14px 24px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+
+        .btn-new:hover {
+            background-color: #43a047;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🏆 События</h1>
+
+    <a href="#" class="btn-new" th:href="@{/events/new}">➕ Добавить событие</a>
+
+    <div th:if="${events.empty}">
+        <p>Событий пока нет.</p>
+    </div>
+
+    <div th:each="event : ${events}" class="event-card">
+        <div class="event-name" th:text="${event.name}">Соревнование 1</div>
+        <div class="event-date" th:text="${event.eventDate}">2025-04-05 15:00</div>
+        <a th:href="@{/events/{id}(id=${event.id})}" class="btn">➡ Выбрать</a>
+    </div>
+</div>
+</body>
+</html>

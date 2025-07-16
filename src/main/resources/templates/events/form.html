@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить событие</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            background-color: #ff4e00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e04400;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎯 Добавить событие</h1>
+    <form th:action="@{/events}" th:object="${event}" method="post">
+        <label for="name">Название события:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+
+        <label for="eventDate">Дата и время:</label>
+        <input type="datetime-local" id="eventDate" th:field="*{eventDate}" required />
+
+        <label for="redTeam">Участники красной команды (через запятую):</label>
+        <input type="text" id="redTeam" name="redTeam" placeholder="Иван, Петр, Сидор..." />
+
+        <label for="greenTeam">Участники зелёной команды (через запятую):</label>
+        <input type="text" id="greenTeam" name="greenTeam" placeholder="Анна, Ольга, Мария..." />
+
+        <button type="submit">✅ Сохранить событие</button>
+    </form>
+
+    <a th:href="@{/templates/events}">⬅ Вернуться к списку</a>
+</div>
+</body>
+</html>
