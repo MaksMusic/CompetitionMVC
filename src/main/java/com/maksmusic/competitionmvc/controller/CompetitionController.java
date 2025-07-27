@@ -1,5 +1,7 @@
-package com.maksmusic.competitionmvc;
+package com.maksmusic.competitionmvc.controller;
 
+import com.maksmusic.competitionmvc.model.entity.CompetitionEvent;
+import com.maksmusic.competitionmvc.service.CompetitionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

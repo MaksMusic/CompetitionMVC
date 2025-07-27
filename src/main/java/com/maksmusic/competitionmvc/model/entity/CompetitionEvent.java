@@ -1,4 +1,4 @@
-package com.maksmusic.competitionmvc;
+package com.maksmusic.competitionmvc.model.entity;
 
 import jakarta.persistence.*;
 

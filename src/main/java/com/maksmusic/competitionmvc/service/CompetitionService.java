@@ -1,5 +1,7 @@
-package com.maksmusic.competitionmvc;
+package com.maksmusic.competitionmvc.service;
 
+import com.maksmusic.competitionmvc.model.entity.CompetitionEvent;
+import com.maksmusic.competitionmvc.repo.CompetitionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
